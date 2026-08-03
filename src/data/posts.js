@@ -1,5 +1,18 @@
 export const posts = [
   {
+    slug: "how-this-blog-works",
+    title: "How This Blog Works",
+    date: "2026-06-20",
+    excerpt: "An overview of the technologies and processes behind this blog.",
+    content: [
+      "This Vue 3 component manages a local blog using localStorage to persist created, edited, and deleted posts across browser refreshes.",
+      `It handles state switching between a "Create" and "Edit" form, parsing tag inputs and paragraph line breaks dynamically into arrays.`,
+      "The UI leverages Bootstrap layouts and visual cues, like conditional borders, to highlight active edits and toggle form visibility.",
+      "It goes back to its original state if you clear browser data, open incognito mode, or use a completely different browser."
+    ],
+    tags: ["Local Storage", "Vue.js", "CRUD"],
+  },
+  {
     slug: "my-programming-journey",
     title: "My Programming Journey",
     date: "2026-06-20",
