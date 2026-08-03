@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
   import { Notyf } from "notyf";
 
   const notyf = new Notyf();
@@ -53,8 +53,8 @@
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!recaptchaToken.value) {
-        notyf.error("Please complete the reCAPTCHA challenge.");
-        return;
+      notyf.error("Please complete the reCAPTCHA challenge.");
+      return;
     }
 
     isLoading.value = true;
@@ -190,5 +190,4 @@
       </div>
     </div>
   </section>
-  
 </template>

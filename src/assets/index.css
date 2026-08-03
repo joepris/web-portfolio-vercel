@@ -49,6 +49,31 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+#app {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.full-page-view {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-page-main {
+    flex: 1 0 auto;
+}
+
+.full-page-main > * {
+    width: 100%;
 }
 
 section {
@@ -85,6 +110,13 @@ section {
     transform: translateY(-2px);
 }
 .nav-link-light:hover::after {
+    width: 80%;
+    left: 10%;
+}
+.nav-link-light.router-link-active {
+    color: #fde047 !important;
+}
+.nav-link-light.router-link-active::after {
     width: 80%;
     left: 10%;
 }
@@ -562,3 +594,89 @@ section {
 #projects .projects-carousel-slide:nth-child(7)  .project-card { animation-delay: 0.35s; }
 #projects .projects-carousel-slide:nth-child(8)  .project-card { animation-delay: 0.40s; }
 #projects .projects-carousel-slide:nth-child(9)  .project-card { animation-delay: 0.45s; }
+
+/* ── Detail & blog pages ── */
+.detail-panel {
+    background-color: #fff7ed;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(67, 20, 7, 0.12);
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+@media (min-width: 768px) {
+    .detail-panel {
+        padding: 2rem;
+    }
+}
+
+.detail-image {
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.detail-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    color: #431407;
+    margin-bottom: 0.75rem;
+}
+
+.detail-lead {
+    font-weight: 500;
+    color: #7c2d12;
+    margin-bottom: 1rem;
+}
+
+.detail-body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+}
+
+.detail-tag {
+    background-color: #7c2d12;
+    color: #ffedd5;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+}
+
+.blog-intro {
+    font-family: "Open Sans", sans-serif;
+    color: #7c2d12;
+}
+
+.blog-card {
+    background-color: #fff7ed;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(67, 20, 7, 0.12);
+    animation: fadeInUp 0.6s ease-out both;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1.5rem rgba(67, 20, 7, 0.25);
+}
+
+.blog-date {
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8rem;
+    color: #9a3412;
+    margin: 0;
+}
+
+.blog-card-title {
+    color: #431407;
+    margin-bottom: 0.75rem;
+}
+
+.blog-excerpt {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+}

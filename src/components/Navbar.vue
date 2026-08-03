@@ -3,7 +3,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-orange-dark text-light p-3">
     <div class="container-fluid">
-      <a class="navbar-brand text-light fw-bold" href="#" id="logo">MyPortfolio</a>
+      <RouterLink class="navbar-brand text-light fw-bold" to="/" id="logo">MyPortfolio</RouterLink>
       <button
         class="navbar-toggler"
         type="button"
@@ -18,16 +18,26 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link nav-link-light" aria-current="page" href="#about">About Me</a>
+            <RouterLink
+              class="nav-link nav-link-light"
+              active-class=""
+              exact-active-class="router-link-active"
+              to="/"
+            >
+              About Me
+            </RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-light" href="#projects">My Projects</a>
+            <RouterLink class="nav-link nav-link-light" to="/projects">My Projects</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-light" href="#tools">Tools</a>
+            <RouterLink class="nav-link nav-link-light" to="/tools">Tools</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-light" href="#contact">Contact</a>
+            <RouterLink class="nav-link nav-link-light" to="/blog">Blog</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link nav-link-light" to="/contact">Contact</RouterLink>
           </li>
         </ul>
       </div>

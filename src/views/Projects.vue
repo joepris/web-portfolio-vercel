@@ -1,7 +1,7 @@
 <script setup>
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { projects } from '../data/projects.js'
-import ProjectCard from './ProjectCard.vue'
+import ProjectCard from '../components/ProjectCard.vue'
 
 const carouselRef = ref(null)
 const currentIndex = ref(0)
@@ -65,7 +65,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <section class="row bg-orange-cream g-4 pb-5 justify-content-center p-2 p-md-5 m-3" id="projects">
+  <section class="row bg-orange-cream g-4 pb-5 justify-content-center p-2 p-md-5 m-3" id="projects">
         <div class="col-12">
             <div class="bg-orange-dark text-light mx-auto rounded text-center py-3 section-header">
                 <h2 class="mb-0">My Projects</h2>
@@ -84,7 +84,7 @@ onUnmounted(() => {
                     </button>
                     <div ref="carouselRef" class="projects-carousel">
                         <div class="projects-carousel-track" :style="trackStyle">
-                            <div v-for="project in projects" :key="project.title" class="projects-carousel-slide"
+                            <div v-for="project in projects" :key="project.slug" class="projects-carousel-slide"
                                 :style="slideStyle">
                                 <ProjectCard :project="project" />
                             </div>
