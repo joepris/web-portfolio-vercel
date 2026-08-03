@@ -30,92 +30,68 @@
   }
 
   function renderRecaptcha() {
-    if (!window.grecaptcha || !window.grecaptcha.render) return;
-
-    if (recaptchaWidgetId.value === null && recaptchaContainer.value) {
-      recaptchaWidgetId.value = window.grecaptcha.render(
-        recaptchaContainer.value,
-        {
-          sitekey: SITE_KEY,
-          callback: onRecaptchaSuccess,
-          "expired-callback": onRecaptchaExpired,
-        }
-      );
+    if (!window.grecaptcha) {
+        console.error('reCAPTCHA not loaded');
+        return;
     }
+
+    recaptchaWidgetId.value = window.grecaptcha.render(recaptchaContainer.value, {
+        sitekey: SITE_KEY,
+        size: 'normal', // or 'compact'
+        callback: onRecaptchaSuccess,
+        'expired-callback': onRecaptchaExpired,
+    });
   }
 
   function resetRecaptcha() {
-    if (
-      window.grecaptcha &&
-      recaptchaWidgetId.value !== null
-    ) {
+    if (recaptchaWidgetId.value !== null) {
       window.grecaptcha.reset(recaptchaWidgetId.value);
-      recaptchaToken.value = "";
+      recaptchaToken.value = '';
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (!recaptchaToken.value) {
-      notyf.error("Please complete the reCAPTCHA.");
-      return;
+        notyf.error("Please complete the reCAPTCHA challenge.");
+        return;
     }
 
     isLoading.value = true;
 
     const formData = {
-      access_key: WEB3FORMS_ACCESS_KEY,
-      subject: SUBJECT,
-      name: name.value,
-      email: email.value,
-      message: message.value
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: SUBJECT,
+        name: name.value,
+        email: email.value,
+        message: message.value
     };
 
     try {
-      const response = await fetch(
-        "https://api.web3forms.com/submit",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(formData),
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(formData)
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+            notyf.success("Message sent successfully!");
+            name.value = "";
+            email.value = "";
+            message.value = "";
+        } else {
+            notyf.error("Failed to send message. Please try again.");
         }
-      );
-
-      const result = await response.json();
-
-      if (result.success) {
-        name.value = "";
-        email.value = "";
-        message.value = "";
-
-        resetRecaptcha();
-
-        openSuccessModal();
-      } else {
-        notyf.error(result.message || "Failed to send message.");
-      }
-    } catch (err) {
-      console.error(err);
-      notyf.error("An error occurred while sending.");
+    } catch (error) {
+        notyf.error("An error occurred. Please try again.");
     } finally {
-      isLoading.value = false;
+        resetRecaptcha();
+        isLoading.value = false;
     }
-  };
-
-  const openSuccessModal = () => {
-    const modal = document.getElementById("modalDiv");
-
-    if (modal && window.bootstrap) {
-      new window.bootstrap.Modal(modal).show();
-    } else {
-      handleModalConfirm();
-    }
-  };
-
-  const handleModalConfirm = () => {
-    notyf.success("Thank you for submitting!");
   };
 
   onMounted(() => {
@@ -213,34 +189,5 @@
       </div>
     </div>
   </section>
-
-  <div class="modal" id="modalDiv" tabindex="-1" role="dialog" aria-labelledby="modalDivLabel">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-dark">
-        <div class="modal-header bg-orange-dark text-white">
-          <h2 class="modal-title h5" id="modalDivLabel">Message Sent</h2>
-          <button
-            type="button"
-            class="btn-close btn-close-white"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            @click="handleModalConfirm"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <p class="mb-0">Thank you for contacting me! I will review your submission soon.</p>
-        </div>
-        <div class="modal-footer">
-          <button 
-            type="button" 
-            class="btn btn-orange-dark" 
-            data-bs-dismiss="modal"
-            @click="handleModalConfirm"
-          >
-            OK
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </template>
