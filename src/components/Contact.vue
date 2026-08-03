@@ -77,6 +77,7 @@
             body: JSON.stringify(formData)
         });
         const result = await response.json();
+        console.log(result);
 
         if (response.ok) {
             notyf.success("Message sent successfully!");
