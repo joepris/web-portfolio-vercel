@@ -13,8 +13,7 @@
   const WEB3FORMS_ACCESS_KEY = "680dd147-0de9-4144-8aaf-27d7e099e450";
   const SUBJECT = "User sent a message through the Website (Github Pages) Contact Form";
 
-  // Replace with your own reCAPTCHA v2 SITE KEY
-  const SITE_KEY = "6LdrB3MtAAAAAP9yeidr3SDOPWGOBrfNGkcTU_xX";
+  const SITE_KEY = "6Ld6F3MtAAAAANHMXSeegp4yUURUUuuqXMfaskR5";
 
   const recaptchaContainer = ref(null);
   const recaptchaWidgetId = ref(null);
