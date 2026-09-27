@@ -31,7 +31,7 @@
             <RouterLink class="nav-link nav-link-light" to="/projects">My Projects</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link nav-link-light" to="/tools">Tools</RouterLink>
+            <RouterLink class="nav-link nav-link-light" to="/tools">Skills</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link nav-link-light" to="/blog">Blog</RouterLink>
