@@ -150,8 +150,7 @@ function deletePost(slugToDelete) {
         data-bs-target="#blogPostFormContainer" @click="isEditing ? resetForm() : null">
         {{ isEditing ? '❌ Cancel Editing' : '➕ Create New Post' }}
       </button>
-      <button class="btn btn-outline-dark mb-2" type="button" data-bs-toggle="collapse"
-        data-bs-target="#blogPostFormContainer" @click="isEditing ? restartBlog() : null">
+      <button class="btn btn-outline-dark mb-2" type="button" @click="restartBlog()">
         🔄 Restart Blog
       </button>
     </div>
