@@ -29,6 +29,7 @@ onMounted(() => {
     posts.value = JSON.parse(savedPosts)
   } else {
     posts.value = defaultPosts
+    localStorage.removeItem('local_blog_posts') 
     localStorage.setItem('local_blog_posts', JSON.stringify(defaultPosts))
   }
 })
