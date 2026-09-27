@@ -24,15 +24,19 @@ const formPost = ref({
 })
 
 onMounted(() => {
+  startBlog();
+})
+
+function startBlog(){
   const savedPosts = localStorage.getItem('local_blog_posts')
   if (savedPosts) {
     posts.value = JSON.parse(savedPosts)
   } else {
     posts.value = defaultPosts
-    localStorage.removeItem('local_blog_posts') 
+
     localStorage.setItem('local_blog_posts', JSON.stringify(defaultPosts))
   }
-})
+}
 
 function formatDate(dateString) {
   if (!dateString) return ''
@@ -80,6 +84,11 @@ function resetForm() {
 
   const formElement = document.getElementById('blogPostFormContainer')
   formElement?.classList.remove('show')
+}
+
+function restartBlog(){
+  localStorage.removeItem('local_blog_posts') 
+  startBlog();
 }
 
 function handleSubmit() {
@@ -140,6 +149,10 @@ function deletePost(slugToDelete) {
       <button class="btn btn-outline-dark mb-2" type="button" data-bs-toggle="collapse"
         data-bs-target="#blogPostFormContainer" @click="isEditing ? resetForm() : null">
         {{ isEditing ? '❌ Cancel Editing' : '➕ Create New Post' }}
+      </button>
+      <button class="btn btn-outline-dark mb-2" type="button" data-bs-toggle="collapse"
+        data-bs-target="#blogPostFormContainer" @click="isEditing ? restartBlog() : null">
+        🔄 Restart Blog
       </button>
     </div>
 
